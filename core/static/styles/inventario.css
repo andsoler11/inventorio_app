@@ -1,0 +1,82 @@
+
+
+.inventario_section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+}
+
+
+.button_agregar_categoria {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: #ff6b81;
+    color: black;
+    font-size: 20px;
+    font-weight: 500;
+    cursor: pointer;
+    border: none;
+    transition: all 0.3s ease;
+}
+
+
+
+#main-table {
+    border-spacing: 1; 
+    border-collapse: collapse; 
+    background:white;
+    border-radius:6px;
+    overflow:hidden;
+    max-width:70vw; 
+    width:100%;
+    margin:0 auto;
+    position:relative;
+}
+
+#main-table * {
+    position:relative;
+}
+
+#main-table td, table th {
+    padding-left:8px;
+}
+
+#main-table thead tr {
+    height:60px;
+    background:#ff6b81;
+    font-size:16px;
+    text-align: left;
+}
+
+#main-table tbody tr {
+    height:48px;
+    border-bottom:1px solid #e0e0e0;
+}
+
+#main-table tbody tr:last-child {
+    border:0;
+}
+
+#main-table tbody tr td, table tbody tr th {
+    text-align:left;
+}
+
+#main-table tbody tr td .btn {
+    display:inline-block;
+    height:30px;
+    width:50px;
+    border-radius:20%;
+    background:#05010d;
+    color:#fff;
+    line-height:30px;
+    text-align:center;
+    font-size:12px;
+    margin-right:5px;
+}

@@ -1,0 +1,33 @@
+<!-- Header Section -->
+<header class="homepage_header">
+    <div class="homepage_header__logo">
+        {% comment %} <img src="public/images/logo.png" alt="logo"> {% endcomment %}
+        <h1 style="color: white;">Logo</h1>
+    </div>
+    <div class="homepage_header__menu">
+        <ul class="homepage_header__nav">
+            <li class="homepage_header__nav__item"><a href="{% url 'homepage' %}">Inicio</a></li>
+            <li class="homepage_header__nav__item"><a href="{% url 'product' %}">Tu Inventario</a></li>
+            <li class="homepage_header__nav__item"><a href="index.php">Contacto</a></li>
+        </ul>
+    </div>
+
+    {% if not request.user.is_authenticated %}
+    <div class="homepage_header__login">
+        <ul class="homepage_header__nav">
+            <li class="homepage_header__nav__item"><a href="{% url 'login' %}">Iniciar Sesión</a></li>
+            <li class="homepage_header__nav__item"><a href="{% url 'register' %}">Registrarse</a></li>
+        </ul>
+    </div>
+    {% else %}
+
+    <div class="homepage_header__login">
+        <ul class="homepage_header__nav">
+            <li class="homepage_header__nav__item_user">{{ user.email }}</li>
+            <li class="homepage_header__nav__item"><a href="{% url 'logout' %}">Cerrar Sesión</a></li>
+        </ul>
+    </div>
+    {% endif %}
+</header>
+
+

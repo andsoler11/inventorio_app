@@ -1,0 +1,33 @@
+{% extends 'main.html' %}
+{% load static %}
+{% block content %}
+
+<link rel="stylesheet" href="{% static 'styles/inventario.css' %}" />
+
+<a class="btn btn--sub btn--lg  my-md" href="{% url 'product' %}">Atras</a>
+<form action="{% url 'edit_product' product.id %} " method="POST">
+    {% csrf_token %}
+    <div class="form-group">
+        <label for="nombre">Nombre</label>
+        <input type="text" class="form-control" id="nombre" name="nombre" placeholder="Nombre" value="{{product.nombre}}">
+    </div>
+
+    <div class="form-group">
+        <label for="cantidad">cantidad</label>
+        <input type="text" class="form-control" id="cantidad" name="cantidad" placeholder="cantidad" value="{{product.cantidad}}">
+    </div>
+
+    <div class="form-group">
+        <label for="precio">precio</label>
+        <input type="text" class="form-control" id="precio" name="precio" placeholder="precio" value="{{product.precio}}">
+    </div>
+
+    <div class="form-group">
+        <label for="descripcion">descripcion</label>
+        <input type="text" class="form-control" id="descripcion" name="descripcion" placeholder="descripcion" value="{{product.descripcion}}">
+    </div>
+
+    <button type="submit" class="btn btn-primary">Guardar</button>
+</form>
+
+{% endblock %}

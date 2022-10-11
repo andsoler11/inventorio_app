@@ -1,0 +1,89 @@
+{% extends 'main.html' %}
+{% load static %}
+{% block content %}
+
+{% if page == 'register' %}
+
+    <div class="auth">
+        <div class="card">
+          <div class="auth__header text-center">
+            <h3>Register an Account</h3>
+          </div>
+  
+          <form  action="{% url 'register' %}" method="POST" class="form auth__form">
+            {% csrf_token %}
+            <div class="form__group">
+              <label for="email" class="form__label">Email</label>
+              <input type="email" name="email" id="email" class="form__input" placeholder="Enter your email" required>
+            </div>
+            <div class="form__group">
+              <label for="password" class="form__label">Password</label>
+              <input type="password" name="password" id="password" class="form__input" placeholder="Enter your password" required>
+            </div>
+            <div class="form__group">
+              <label for="password2" class="form__label">Confirm Password</label>
+              <input type="password" name="password2" id="password2" class="form__input" placeholder="Confirm your password" required>
+            </div>
+            <div class="form__group">
+              <button type="submit" class="btn btn--primary btn--block">Register</button>
+            </div>
+          </form>
+
+          <div class="auth__alternative">
+            <a href="{% url 'login' %}">Log In</a>
+          </div>
+        </div>
+      </div>
+
+
+{% else %}
+<div class="auth">
+    <div class="card">
+
+      <div class="auth__header text-center">
+        <h3>Account Login</h3>
+      </div>
+
+      <form action="" method="POST" class="form auth__form">
+        {% csrf_token %}
+        <!-- Input:Username -->
+        <div class="form__field">
+          <label for="formInput#text">Email: </label>
+          <input
+            class="input input--text"
+            id="formInput#text"
+            type="text"
+            name="email"
+            placeholder="Enter your email..."
+          />
+        </div>
+
+        <!-- Input:Password -->
+        <div class="form__field">
+          <label for="formInput#password">Password: </label>
+          <input
+            class="input input--password"
+            id="formInput#passowrd"
+            type="password"
+            name="password"
+            placeholder="Enter your password"
+          />
+        </div>
+
+        <!-- Button:Submit -->
+        <div class="form__field">
+          <button class="btn btn--primary btn--block" type="submit">Login</button>
+        </div>
+      </form>
+
+
+      <div class="auth__alternative">
+        <a href="{% url 'register' %}">Sign Up</a>
+      </div>
+    </div>
+  </div>
+{% endif %}
+
+
+
+{% endblock %}

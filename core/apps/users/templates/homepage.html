@@ -1,0 +1,27 @@
+{% extends 'main.html' %}
+{% load static %}
+{% block content %}
+
+
+<link rel="stylesheet" href="{% static 'styles/homepage.css' %}" />
+
+<div class="homepage_container">
+    <div class="homepage_container_left">
+        <div class="homepage_container_left_top">
+            <h2>que somos?</h2>
+            <p>Pagina para llevar inventarios</p>
+        </div>
+    </div>
+    <div class="homepage_container_right">
+        <div class="homepage_container_right_top">
+            <h2>Ingresa o registrate</h2>
+            <ul class="homepage_container_right_top__list">
+                <li><a href="{% url 'register' %}" class="homepage_container_left_bottom__link">Register</a></li>
+                <li><a href="{% url 'login' %}" class="homepage_container_left_bottom__link">Login</a></li>
+            </ul>
+        </div>
+      </div>
+</div>
+
+
+{% endblock %}

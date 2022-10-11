@@ -1,0 +1,101 @@
+{% extends 'main.html' %}
+{% load static %}
+{% block content %}
+
+
+<link rel="stylesheet" href="{% static 'styles/inventario.css' %}" />
+
+
+<div>
+    <button onclick="insertCategory()" class="button_agregar_categoria"><i class="fa fa-plus">+ Agregar
+            producto</i></button>
+</div>
+
+
+<div class="modal fade" id="insertCategoryModal" style="display: none;">
+    <div class="modal-header">
+        <h4 class="modal-title">Insertar Nueva categoria</h4>
+        <button type="button" class="close" onclick="hideModal()">&times;</button>
+    </div>
+
+    <div class="modal-body">
+        <form action="{% url 'product' %}" method="POST">
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="nombre">Nombre</label>
+                <input type="text" class="form-control" id="nombre" name="nombre" placeholder="Nombre">
+            </div>
+
+            <div class="form-group">
+                <label for="cantidad">cantidad</label>
+                <input type="text" class="form-control" id="cantidad" name="cantidad" placeholder="cantidad">
+            </div>
+
+            <div class="form-group">
+                <label for="precio">precio</label>
+                <input type="text" class="form-control" id="precio" name="precio" placeholder="precio">
+            </div>
+
+            <div class="form-group">
+                <label for="descripcion">descripcion</label>
+                <input type="text" class="form-control" id="descripcion" name="descripcion" placeholder="descripcion">
+            </div>
+
+            <button type="submit" class="btn btn-primary">Guardar</button>
+        </form>
+    </div>
+</div>
+
+
+<div class="inventario_section">
+    <h1>INVENTARIOS</h1>
+    <table id="main-table" class="inventario_section__table">
+        <thead class="inventario_section__table_head">
+            <tr id="table-head" class="inventario_section__table_head__row">
+                <th class="inventario_section__table_head__row_item">Nombre</th>
+                <th class="inventario_section__table_head__row_item">Precio</th>
+                <th class="inventario_section__table_head__row_item">Cantidad</th>
+                <th class="inventario_section__table_head__row_item">Descripción</th>
+                <th class="inventario_section__table_head__row_item">Fecha de creación</th>
+                <th class="inventario_section__table_head__row_item">Acciones</th>
+            </tr>
+        </thead>
+        <tbody id="table-body" class="inventario_section__table_body">
+
+        {% if products|length > 0 %}
+            {% for product in products %}
+                <tr class="inventario_section__table_body__row">
+                    <td class="inventario_section__table_body__row_item">{{ product.nombre }}</td>
+                    <td class="inventario_section__table_body__row_item">{{ product.precio }}</td>
+                    <td class="inventario_section__table_body__row_item">{{ product.cantidad }}</td>
+                    <td class="inventario_section__table_body__row_item">{{ product.descripcion }}</td>
+                    <td class="inventario_section__table_body__row_item">{{ product.fecha }}</td>
+                    <td>
+                        <a href="{% url 'edit_product' product.id %}" class="btn btn-success">Editar</a>
+                        <a href="{% url 'delete_product' product.id %}" class="btn btn-danger">Eliminar</a>
+                    </td>
+                </tr>
+            {% endfor %}
+        {% endif %}
+        </tbody>
+    </table>
+</div>
+
+
+
+
+
+
+<script>
+    function insertCategory() {
+        document.getElementById("insertCategoryModal").style.display = "block";
+        document.querySelector(".inventario_section").style.display = "none";
+    }
+
+    function hideModal() {
+        document.getElementById("insertCategoryModal").style.display = "none";
+        document.querySelector(".inventario_section").style.display = "flex";
+    }
+</script>
+
+{% endblock %}
